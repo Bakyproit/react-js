@@ -1,0 +1,19 @@
+.song{
+    width: 200px;
+    padding-left: 10px;
+    &__thumbnail{
+        img{
+            width: 200px;
+            border-radius: 10px;
+        }
+    }
+    &__name{
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+    &__title{
+        margin: 0;
+        margin-bottom: 10px;
+    }
+}
