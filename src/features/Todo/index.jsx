@@ -9,12 +9,13 @@ TodoFeature.propTypes = {};
 
 function TodoFeature(props) {
     const match = useRouteMatch();
+    
     return (
     //math.path = cha
     <div>
     <Switch>
         <Route path={match.path} component={ListPage} exact />
-        <Route path={`${match.path}/:todoId`} component={DetaiPage} exact />
+        <Route path={`${match.path}/:todoId`} component={DetaiPage} />
         <Route component={NotFound} />
     </Switch>
     </div>

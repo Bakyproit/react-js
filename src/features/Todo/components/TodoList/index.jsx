@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames' ;
-import './styles.scss' ;
+import styles from './styles.scss' ;
 
+const cx = classnames.bind(styles)
 TodoList.propTypes = {
     TodoList : PropTypes.array , 
     onTodoClick : PropTypes.func ,
@@ -20,7 +21,7 @@ function TodoList({todoList , onTodoClick}) {
         onTodoClick(todo , idx)
     }
     return (
-        <ul className='todo-list'>
+        <ul className={cx('todo-list')}>
             {todoList.map((todo , idx) => (
                 <li 
                 key={todo.id} 
