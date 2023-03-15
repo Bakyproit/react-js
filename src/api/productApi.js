@@ -3,9 +3,24 @@
 import axiosClient from "./axiosClient";
 
 const productApi = {
-    getAll(params) { 
-        const url = '/products' ; 
-        return axiosClient.get(url , {params : params}) ;
+    async getAll(params) { 
+        //Transform _page to _start
+        const newParams ={...params} ;
+        newParams._start = !params._page || params._page <= 1 ? 0 : (params._page -1) * (params._limit || 50) ;
+        // Remove un-need key xoa page ra khoi params
+        delete newParams._page ;
+        // fetch products list + count
+        const productList = await axiosClient.get('/products' , {params : newParams}) ; //ds san pham
+        const count = await axiosClient.get('/products/count' , {params : newParams}) ; // so
+        //build reponse and return 
+        return {
+            data : productList ,
+            pagination :{
+                page : params._page , 
+                limit : params._limit , 
+                total : count ,
+            },
+        };
     } , 
     get(id){
         const url = `/products/${id}` ; 
