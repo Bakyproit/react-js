@@ -1,11 +1,6 @@
-import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ProductFeature from 'features/Product';
-import { useSnackbar } from 'notistack';
-import React, { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
-import productApi from './api/productApi';
 import './App.css';
 import Header from './components/Header';
 import NotFound from './components/NotFound';
@@ -14,11 +9,11 @@ import SongFeature from './features/Song';
 import TodoFeature from './features/Todo';
 
 // styled component CSS IN JS
-const Title = styled.h1`
-    text-align : center ; 
-    font-weight : bold ;
-    color : ${(props) => props.color || 'green'} ;
-`;
+// const Title = styled.h1`
+//     text-align : center ; 
+//     font-weight : bold ;
+//     color : ${(props) => props.color || 'green'} ;
+// `;
 //Material styles
 const useStyles = makeStyles({
   root: {
@@ -41,16 +36,16 @@ function App() {
   // };
   // const colorList = ['red' , 'green' , 'blue'] ;
 
-  useEffect(() => {
-    const fetchProducts = async () =>{
-      const params = {
-        _limit : 10 ,
-      };
-        const productList = await productApi.getAll(params) ;
-        // console.log(productList) ;
-    }
-    fetchProducts() ;
-  },[]);
+  // useEffect(() => {
+  //   const fetchProducts = async () =>{
+  //     const params = {
+  //       _limit : 10 ,
+  //     };
+  //       const productList = await productApi.getAll(params) ;
+  //       // console.log(productList) ;
+  //   }
+  //   fetchProducts() ;
+  // },[]);
   const classes = useStyles() ;
 
   // const {enqueueSnackbar} = useSnackbar() ;
@@ -68,14 +63,14 @@ function App() {
         {/* <Link to='todos'>Todo</Link>
         <p><Link to='songs'>Song</Link></p> */}
         {/* <Button onClick={showNoti}>Show noti</Button> */}
-
+        
       <Switch>
         <Redirect from='/home' to='/' exact />
         <Route path='/' component={CounterFeature} exact/>
         <Route path='/todos' component={TodoFeature} exact/>
         <Route path='/songs' component={SongFeature} />
         <Route path='/products' component={ProductFeature} />
-        <Route component={NotFound} />
+        {/* <Route component={NotFound} /> */}
       </Switch>
     </div>
   );
